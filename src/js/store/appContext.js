@@ -30,7 +30,7 @@ const injectContext = PassedComponent => {
 			 * state.loadSomeData(); <---- calling this function from the flux.js actions
 			 *
 			 **/
-			state.actions.getData();
+			state.actions.getData(); // doesnt need param passed since using hard coded URL in action fetch
 		}, []);
 
 		// the initial value for the context its not null anymore, but the current state of this component,
