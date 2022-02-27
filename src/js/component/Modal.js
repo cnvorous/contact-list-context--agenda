@@ -32,7 +32,8 @@ export const Modal = props => {
 						<button type="button" className="btn btn-primary">
 							Oh no!
 						</button>
-						<button type="button" className="btn btn-secondary" data-dismiss="modal">
+						<button type="button" className="btn btn-secondary" data-dismiss="modal"
+						onClick={e=>actions.setDeleteId(props.id)}>
 							Do it!
 						</button>
 					</div>
@@ -46,9 +47,10 @@ export const Modal = props => {
  * your component's properties
  **/
 Modal.propTypes = {
-	history: PropTypes.object,
-	onClose: PropTypes.func,
-	show: PropTypes.bool
+	history: PropTypes.object,	 // was already in template
+	onClose: PropTypes.func,	 // was already in template
+	show: PropTypes.bool,		// was already in template
+	id: PropTypes.string,  		// add this to code , the id even though # is a string cause nto use mathwise 
 };
 
 /**

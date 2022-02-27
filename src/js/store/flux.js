@@ -60,7 +60,13 @@ const getState = ({ getStore, setStore, getActions }) => {  //added getActions s
 					.catch(error => console.error(error));
 			},
 			setDeleteId: (id) => {
-				setStore({deleteContacts: id});
+				fetch("https://assets.breatheco.de/apis/fake/contact/" + id,{
+					method: "DELETE",
+				})
+				.then(response=> response.json())
+				.then(()=>{
+						getActions().getData();     
+				});
 			}
 		}
 	};

@@ -27,7 +27,8 @@ export const Contacts = () => {
 								<ContactCard
 									contactDetails={item}
 									key={index}
-									onDelete={() => setState({ showModal: true })}
+									onDelete={() => 
+										setState({ showModal: true })}
 								/>
 							);
 						})}
