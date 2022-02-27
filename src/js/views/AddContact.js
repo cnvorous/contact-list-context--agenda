@@ -6,20 +6,15 @@ import { Context } from "../store/appContext.js"; // needed to add
 export const AddContact = () => {
 	const { store, actions } = useContext(Context); // needed to add this doesnt change its standard
 	const [addContactInfo, setAddContactInfo] = useState({
-		fullName: "",
+		//addContactinfo is to save info from form
+		full_Name: "",
 		phone: "",
 		email: "",
-		adress: "",
-	});
-	const [addInputAgenda, setAddInputAgenda] = useState({
-		fullName: "",
-		phone: "",
-		email: "",
-		adress: "",
+		address: ""
 	});
 	//Const handleChange= e => {
 	//setAddContactInfo({...addContactInfo, [e.target.name]: e.target.value})}
-	// could use this handleChange function in your onclick events instead of having to write out 
+	// could use this handleChange function in your onclick events instead of having to write out
 	return (
 		<div className="container">
 			<div>
@@ -27,50 +22,51 @@ export const AddContact = () => {
 				<form>
 					<div className="form-group">
 						<label>Full Name</label>
-						<input 
-							type="text" 
-							className="form-control" 
-							placeholder="Full Name" 
+						<input
+							type="text"
+							className="form-control"
+							placeholder="Full Name"
 							value={addContactInfo.fullname} // would not need value if used onchange={handleChange}
-							onChange={e=> setAddContactInfo({...addContactInfo, fullName: e.target.value})}
+							onChange={e => setAddContactInfo({ ...addContactInfo, fullName: e.target.value })}
 							// if using function here would be onChange={handleChange}
-							/>
+						/>
 					</div>
 					<div className="form-group">
 						<label>Email</label>
 						<input
-							type="email" 
-							className="form-control" 
+							type="email"
+							className="form-control"
 							placeholder="Enter email"
 							value={addContactInfo.email}
-							onChange={e=> setAddContactInfo({...addContactInfo, email: e.target.value})}
-							 />
+							onChange={e => setAddContactInfo({ ...addContactInfo, email: e.target.value })}
+						/>
 					</div>
 					<div className="form-group">
 						<label>Phone</label>
 						<input
-							type="phone" 
-							className="form-control" 
+							type="phone"
+							className="form-control"
 							placeholder="Enter phone"
 							value={addContactInfo.phone}
-							onChange={e=> setAddContactInfo({...addContactInfo, phone: e.target.value})}
-							 />
+							onChange={e => setAddContactInfo({ ...addContactInfo, phone: e.target.value })}
+						/>
 					</div>
 					<div className="form-group">
 						<label>Address</label>
-						<input 
+						<input
 							type="text"
-							className="form-control" 
+							className="form-control"
 							placeholder="Enter address"
 							value={addContactInfo.address}
-							onChange={e=> setAddContactInfo({...addContactInfo, address: e.target.value})}
-							 />
+							onChange={e => setAddContactInfo({ ...addContactInfo, address: e.target.value })}
+						/>
 					</div>
-					<button 
+					<button
 						type="button"
 						className="btn btn-primary form-control"
-						onClick={e=> actions.addContact(addInputAgenda)>
-						save
+						onClick={e => actions.addInputAgenda(addContactInfo)}>
+						{" "}
+						//****think this line wrong */ save
 					</button>
 					<Link className="mt-3 w-100 text-center" to="/">
 						or get back to contacts

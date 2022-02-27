@@ -12,7 +12,7 @@ const injectContext = PassedComponent => {
 		const [state, setState] = useState(
 			getState({
 				getStore: () => state.store,
-				getActions: () => state.actions,
+				getActions: () => state.actions, // gives you actions to items on flux page under actiona
 				setStore: updatedStore =>
 					setState({
 						store: Object.assign(state.store, updatedStore),
@@ -31,6 +31,7 @@ const injectContext = PassedComponent => {
 			 *
 			 **/
 			state.actions.getData(); // doesnt need param passed since using hard coded URL in action fetch
+			state.actions.addInputAgenda();
 		}, []);
 
 		// the initial value for the context its not null anymore, but the current state of this component,

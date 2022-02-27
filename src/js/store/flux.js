@@ -1,8 +1,8 @@
-const getState = ({ getStore, setStore }) => {
+const getState = ({ getStore, setStore, getActions}) => {  //added getActions so can use it below 36-38
 	return {
-		store: {
+		store: {        // to change store use setStore, to use items from store use getStore
 			contacts: []
-			addContacts: []
+			addContact: []
 			//deleteContacts:[]
 			// updateContacts: []
 
@@ -21,25 +21,22 @@ const getState = ({ getStore, setStore }) => {
 					})
 					.catch(error => console.log(error));
 			}
-			addInputAgenda: ()=>{
+			addInputAgenda: (contact)=>{
 				fetch("https://assets.breatheco.de/apis/fake/contact/", 
-				method: "POST",
-				headers: {"Content-Type": "application/json"},
+				method: "POST",     // this fetch goes out and changes the backend ***** once POST fetch changes back end then this means 
+				headers: {"Content-Type": "application/json"},   // (cont) the back-end info is diff from front and needs to be updated - this is why we use below line 36-38 GET fetch to grab chnaged info to put in the store 
 				body: JSON.stringify({
-					agenda_slug: "cnvorous",
-					name: full_name,
-					address: address,
-					number: number, 
-					email: email
+					agenda_slug: "cnvorous",  //This created my personal space in API**using my name slug tells the API to save this info in my contact list (users account)
+					full_name: contact.full_name,
+					address: contact.address,
+					phone: contact.phone, 
+					email: contact.email
 				})
 				)
-				.then(res)=>(res.json())
+				.then(response => response.json())  //36-38 GET fetch to grab chaneged info to put in the store 
 				.then(()=>{
-					fetch("https://assets.breatheco.de/apis/fake/contact/agenda/cnvorous")
-					.then(response) => (response.json().then(data=>{
-						setstore({addContacts:data});
-					}))
-				})
+					getActions().getData()  // use this which is same as fetch squence for 1st action(istead of writting all lines out again)
+				})                         // to access getData we must use method getActions() since in actions in flux 
 			}
 		}
 	};
