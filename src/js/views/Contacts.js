@@ -22,9 +22,10 @@ export const Contacts = () => {
 				<div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
 					<ul className="list-group pull-down" id="contact-list">
 						{store.contacts.map((item, index) => {
+							// make sure the store.contacts is in {} because mapping is JVS method and we are in HTML code so needs {}
 							return (
 								<ContactCard
-									history={item}
+									contactDetails={item}
 									key={index}
 									onDelete={() => setState({ showModal: true })}
 								/>
