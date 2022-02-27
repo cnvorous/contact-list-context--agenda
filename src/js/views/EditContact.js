@@ -2,9 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react"; // needed to add useContext
 import { Context } from "../store/appContext.js"; // needed to add
+import propTypes from "prop-types";
 
-export const EditContact = () => {
+export const EditContact = (props) => {
 	const { store, actions } = useContext(Context); // needed to add this doesnt change its standard
+	const targetContact= store.contacts.find(contact=>{
+		return(contact.id == props.match.params.id)
+	});
 	const [updateContactInfo, setUpdateContactInfo] = useState({
 		//addContactinfo is to save info from form
 		full_Name: "",
@@ -12,7 +16,10 @@ export const EditContact = () => {
 		email: "",
 		address: ""
 	});
-
+	// full_Name: targetContact.full_name,
+	// phone: targetContact.phone,
+	// email: targetContact.email,
+	// address: targetContact.address,
 	return (
 		<div className="container">
 			<div>
@@ -62,8 +69,8 @@ export const EditContact = () => {
 					<button
 						type="button"
 						className="btn btn-primary form-control"
-						onClick={e => actions.addInputAgenda(addContactInfo)
-						onClick={e => actions.editContact(addContactInfo)}}> // {/*think need diff params*/}
+						onClick={e => actions.addInputAgenda(updateContactInfo) //changed from addContactInfo not sure what to do here 
+						onClick={e => actions.editContact(updateContactInfo)}}> // {/*think need diff params*/}
 					   Save
 					</button>
 					<Link className="mt-3 w-100 text-center" to="/">
@@ -74,3 +81,8 @@ export const EditContact = () => {
 		</div>
 	);
 };
+
+EditContact.propTypes = {
+	match: PropTypes.object // put this in so can use id as param prop
+};
+

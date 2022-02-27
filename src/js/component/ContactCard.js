@@ -17,10 +17,15 @@ export const ContactCard = ({ contactDetails }) => {
 				</div>
 				<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 					<div className=" float-right">
-						<button className="btn">
-							<i className="fas fa-pencil-alt mr-3" />
-						</button>
-						<button className="btn" onClick={() => props.onDelete()}>
+						<Link to={"/EditContact/" + props.data.id}>
+							<button className="btn">
+								<i className="fas fa-pencil-alt mr-3" />
+							</button>
+						</Link>
+						<button className="btn" onClick={() => 
+							props.onDelete();
+							actions.setDeleteId(props.data.id);
+							}>
 							<i className="fas fa-trash-alt" />
 						</button>
 					</div>

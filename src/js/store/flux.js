@@ -1,10 +1,10 @@
 const getState = ({ getStore, setStore, getActions }) => {  //added getActions so can use it below 36-38
 	return {
 		store: {        // to change store use setStore, to use items from store use getStore
-			contacts: []
-			addContact: []
-			//deleteContacts:[]
-			editContacts: []
+			contacts: [],
+			addContact: [],
+			deleteContacts:[],
+			editContacts: [],
 
 			//Your data structures, A.K.A Entities
 		},
@@ -20,7 +20,7 @@ const getState = ({ getStore, setStore, getActions }) => {  //added getActions s
 						setStore({ contacts: resultJsonified }); // because GET Method { : }
 					})
 					.catch(error => console.log(error));
-			}
+			},
 			addInputAgenda: (contact) => {
 				fetch("https://assets.breatheco.de/apis/fake/contact/",
 					method: "POST",     // this fetch goes out and changes the backend ***** once POST fetch changes back end then this means 
@@ -37,7 +37,7 @@ const getState = ({ getStore, setStore, getActions }) => {  //added getActions s
 					.then(() => {
 						getActions().getData()  // use this which is same as fetch squence for 1st action(istead of writting all lines out again)
 					})                         // to access getData we must use method getActions() since in actions in flux 
-			}
+			},
 
 			editContact: (full_name, email, address, phone) => {
 				fetch("https://assets.breatheco.de/apis/fake/contact/{contact_id}", {
@@ -58,6 +58,9 @@ const getState = ({ getStore, setStore, getActions }) => {  //added getActions s
 					})
 					.then(responseJsonfied => console.log('Success:', responseJsonfied ))
 					.catch(error => console.error(error));
+			},
+			setDeleteId: (id) => {
+				setStore({deleteContacts: id});
 			}
 		}
 	};
