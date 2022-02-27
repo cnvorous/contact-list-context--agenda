@@ -2,7 +2,7 @@ const getState = ({ getStore, setStore }) => {
 	return {
 		store: {
 			contacts: []
-			//addContacts: []
+			addContacts: []
 			//deleteContacts:[]
 			// updateContacts: []
 
@@ -20,6 +20,26 @@ const getState = ({ getStore, setStore }) => {
 						setStore({ contacts: resultJsonified }); // because GET Method { : }
 					})
 					.catch(error => console.log(error));
+			}
+			addInputAgenda: ()=>{
+				fetch("https://assets.breatheco.de/apis/fake/contact/", 
+				method: "POST",
+				headers: {"Content-Type": "application/json"},
+				body: JSON.stringify({
+					agenda_slug: "cnvorous",
+					name: full_name,
+					address: address,
+					number: number, 
+					email: email
+				})
+				)
+				.then(res)=>(res.json())
+				.then(()=>{
+					fetch("https://assets.breatheco.de/apis/fake/contact/agenda/cnvorous")
+					.then(response) => (response.json().then(data=>{
+						setstore({addContacts:data});
+					}))
+				})
 			}
 		}
 	};

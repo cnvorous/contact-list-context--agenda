@@ -11,7 +11,15 @@ export const AddContact = () => {
 		email: "",
 		adress: "",
 	});
-
+	const [addInputAgenda, setAddInputAgenda] = useState({
+		fullName: "",
+		phone: "",
+		email: "",
+		adress: "",
+	});
+	//Const handleChange= e => {
+	//setAddContactInfo({...addContactInfo, [e.target.name]: e.target.value})}
+	// could use this handleChange function in your onclick events instead of having to write out 
 	return (
 		<div className="container">
 			<div>
@@ -23,9 +31,10 @@ export const AddContact = () => {
 							type="text" 
 							className="form-control" 
 							placeholder="Full Name" 
-							value={addContactInfo.fullname}
+							value={addContactInfo.fullname} // would not need value if used onchange={handleChange}
 							onChange={e=> setAddContactInfo({...addContactInfo, fullName: e.target.value})}
-							 />
+							// if using function here would be onChange={handleChange}
+							/>
 					</div>
 					<div className="form-group">
 						<label>Email</label>
@@ -60,7 +69,7 @@ export const AddContact = () => {
 					<button 
 						type="button"
 						className="btn btn-primary form-control"
-						onClick={e=> actions.addContact(addContactInfo)>
+						onClick={e=> actions.addContact(addInputAgenda)>
 						save
 					</button>
 					<Link className="mt-3 w-100 text-center" to="/">
