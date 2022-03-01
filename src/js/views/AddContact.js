@@ -60,12 +60,14 @@ export const AddContact = () => {
 							onChange={e => setAddContactInfo({ ...addContactInfo, address: e.target.value })}
 						/>
 					</div>
-					<button
-						type="button"
-						className="btn btn-primary form-control"
-						onClick={e => actions.addInputAgenda(addContactInfo)}>
-						SAVE
-					</button>
+					<Link to="/">
+						<button
+							type="button"
+							className="btn btn-primary form-control"
+							onClick={e => actions.addInputAgenda(addContactInfo)}>
+							SAVE
+						</button>
+					</Link>
 					<Link className="mt-3 w-100 text-center" to="/">
 						or get back to contacts
 					</Link>

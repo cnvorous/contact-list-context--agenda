@@ -62,13 +62,15 @@ export const EditContact = props => {
 							onChange={e => setUpdateContactInfo({ ...updateContactInfo, address: e.target.value })}
 						/>
 					</div>
-					<button
-						type="button"
-						className="btn btn-primary form-control"
-						onClick={e => actions.editContact(updateContactInfo)}>
-						{" "}
-						Save
-					</button>
+					<Link to="/">
+						<button
+							type="button"
+							className="btn btn-primary form-control"
+							onClick={e => actions.editContact(updateContactInfo)}>
+							{" "}
+							Save
+						</button>
+					</Link>
 					<Link className="mt-3 w-100 text-center" to="/">
 						or get back to contacts
 					</Link>
