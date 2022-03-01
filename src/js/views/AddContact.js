@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react"; // needed to add useContext
 import { Context } from "../store/appContext.js"; // needed to add
@@ -7,7 +6,7 @@ export const AddContact = () => {
 	const { store, actions } = useContext(Context); // needed to add this doesnt change its standard
 	const [addContactInfo, setAddContactInfo] = useState({
 		//addContactinfo is to save info from form
-		full_Name: "",
+		full_name: "",
 		phone: "",
 		email: "",
 		address: ""
@@ -26,8 +25,8 @@ export const AddContact = () => {
 							type="text"
 							className="form-control"
 							placeholder="Full Name"
-							value={addContactInfo.fullname} // would not need value if used onchange={handleChange}
-							onChange={e => setAddContactInfo({ ...addContactInfo, fullName: e.target.value })}
+							value={addContactInfo.full_name} // would not need value if used onchange={handleChange}
+							onChange={e => setAddContactInfo({ ...addContactInfo, full_name: e.target.value })}
 							// if using function here would be onChange={handleChange}
 						/>
 					</div>
@@ -65,7 +64,7 @@ export const AddContact = () => {
 						type="button"
 						className="btn btn-primary form-control"
 						onClick={e => actions.addInputAgenda(addContactInfo)}>
-					    save
+						save
 					</button>
 					<Link className="mt-3 w-100 text-center" to="/">
 						or get back to contacts

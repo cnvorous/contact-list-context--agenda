@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext} from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 
+
 export const Modal = props => {
+	const { store, actions } = useContext(Context); // needed to add this doesnt change its standard
 	const [state, setState] = useState({
-		//initialize state here
+		showModal: false, id,
+		id: null,
 	});
 	return (
 		<div className="modal" tabIndex="-1" role="dialog" style={{ display: props.show ? "inline-block" : "none" }}>
@@ -32,8 +35,11 @@ export const Modal = props => {
 						<button type="button" className="btn btn-primary">
 							Oh no!
 						</button>
-						<button type="button" className="btn btn-secondary" data-dismiss="modal"
-						onClick={e=>actions.setDeleteId(props.id)}>
+						<button
+							type="button"
+							className="btn btn-secondary"
+							data-dismiss="modal"
+							onClick={e => actions.setDeleteId(props.id)}>
 							Do it!
 						</button>
 					</div>
@@ -47,10 +53,10 @@ export const Modal = props => {
  * your component's properties
  **/
 Modal.propTypes = {
-	history: PropTypes.object,	 // was already in template
-	onClose: PropTypes.func,	 // was already in template
-	show: PropTypes.bool,		// was already in template
-	id: PropTypes.string,  		// add this to code , the id even though # is a string cause nto use mathwise 
+	history: PropTypes.object, // was already in template
+	onClose: PropTypes.func, // was already in template
+	show: PropTypes.bool, // was already in template
+	id: PropTypes.string // add this to code , the id even though # is a string cause nto use mathwise
 };
 
 /**

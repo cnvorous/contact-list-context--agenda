@@ -7,9 +7,6 @@ import { Modal } from "../component/Modal";
 
 export const Contacts = () => {
 	const { store, actions } = useContext(Context); // needed to add this doesnt change its standard
-	const [state, setState] = useState({
-		showModal: false
-	});
 
 	return (
 		<div className="container">
@@ -27,15 +24,15 @@ export const Contacts = () => {
 								<ContactCard
 									contactDetails={item}
 									key={index}
-									onDelete={() => 
-										setState({ showModal: true })}
+									onDelete={() => setState({ showModal: true, id: item.id })}
 								/>
 							);
 						})}
 					</ul>
 				</div>
 			</div>
-			<Modal show={state.showModal} onClose={() => setState({ showModal: false })} />
+			<Modal show={state.showModal} 
+			onClose={() => setState({ showModal: false, item}) id={state.id}} /> {/**** VIP this is an error in code the id={} */}
 		</div>
 	);
-};
+}

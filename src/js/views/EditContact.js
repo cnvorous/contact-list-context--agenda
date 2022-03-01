@@ -1,25 +1,21 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react"; // needed to add useContext
 import { Context } from "../store/appContext.js"; // needed to add
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 
-export const EditContact = (props) => {
+export const EditContact = props => {
 	const { store, actions } = useContext(Context); // needed to add this doesnt change its standard
-	const targetContact= store.contacts.find(contact=>{
-		return(contact.id == props.match.params.id)
+	const targetContact = store.contacts.find(contact => {
+		return contact.id == props.match.params.id; //bringing up contact trying to change
 	});
 	const [updateContactInfo, setUpdateContactInfo] = useState({
 		//addContactinfo is to save info from form
-		full_Name: "",
-		phone: "",
-		email: "",
-		address: ""
+		full_name: targetContact.full_name,
+		phone: targetContact.phone,
+		email: targetContact.email,
+		address: targetContact.address,
+		id: targetContact.id
 	});
-	// full_Name: targetContact.full_name,
-	// phone: targetContact.phone,
-	// email: targetContact.email,
-	// address: targetContact.address,
 	return (
 		<div className="container">
 			<div>
@@ -31,8 +27,8 @@ export const EditContact = (props) => {
 							type="text"
 							className="form-control"
 							placeholder="Full Name"
-							value={addContactInfo.fullname} // would not need value if used onchange={handleChange}
-							onChange={e => setAddContactInfo({ ...addContactInfo, fullName: e.target.value })}
+							value={updateContactInfo.full_name} // would not need value if used onchange={handleChange}
+							onChange={e => setUpdateContactInfo({ ...updateContactInfo, full_name: e.target.value })}
 							// if using function here would be onChange={handleChange}
 						/>
 					</div>
@@ -42,8 +38,8 @@ export const EditContact = (props) => {
 							type="email"
 							className="form-control"
 							placeholder="Enter email"
-							value={addContactInfo.email}
-							onChange={e => setAddContactInfo({ ...addContactInfo, email: e.target.value })}
+							value={updateContactInfo.email}
+							onChange={e => setUpdateContactInfo({ ...updateContactInfo, email: e.target.value })}
 						/>
 					</div>
 					<div className="form-group">
@@ -52,8 +48,8 @@ export const EditContact = (props) => {
 							type="phone"
 							className="form-control"
 							placeholder="Enter phone"
-							value={addContactInfo.phone}
-							onChange={e => setAddContactInfo({ ...addContactInfo, phone: e.target.value })}
+							value={updateContactInfo.phone}
+							onChange={e => setUpdateContactInfo({ ...updateContactInfo, phone: e.target.value })}
 						/>
 					</div>
 					<div className="form-group">
@@ -62,16 +58,16 @@ export const EditContact = (props) => {
 							type="text"
 							className="form-control"
 							placeholder="Enter address"
-							value={addContactInfo.address}
-							onChange={e => setAddContactInfo({ ...addContactInfo, address: e.target.value })}
+							value={updateContactInfo.address}
+							onChange={e => setUpdateContactInfo({ ...updateContactInfo, address: e.target.value })}
 						/>
 					</div>
 					<button
 						type="button"
 						className="btn btn-primary form-control"
-						onClick={e => actions.addInputAgenda(updateContactInfo) //changed from addContactInfo not sure what to do here 
-						onClick={e => actions.editContact(updateContactInfo)}}> // {/*think need diff params*/}
-					   Save
+						onClick={e => actions.editContact(updateContactInfo)}>
+						{" "}
+						Save
 					</button>
 					<Link className="mt-3 w-100 text-center" to="/">
 						or get back to contacts
@@ -85,4 +81,3 @@ export const EditContact = (props) => {
 EditContact.propTypes = {
 	match: PropTypes.object // put this in so can use id as param prop
 };
-

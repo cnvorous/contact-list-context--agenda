@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import MikePhoto from "../../img/m101.jpg";
+import Link from "react-router-dom/Link";
 
-export const ContactCard = ({ contactDetails }) => {
+export const ContactCard = props => {
 	// changed from props // have to either use prop.item/key or use {}and call declared item from listing the <card/>tag
 	const [state, setState] = useState({
 		//initialize state here
@@ -17,22 +18,23 @@ export const ContactCard = ({ contactDetails }) => {
 				</div>
 				<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 					<div className=" float-right">
-						<Link to={"/EditContact/" + props.data.id}>
+						<Link to={"/EditContact/" + props.contactDetails.id}>
 							<button className="btn">
 								<i className="fas fa-pencil-alt mr-3" />
 							</button>
 						</Link>
-						<button className="btn" onClick={() => 
-							props.onDelete();
-							actions.setDeleteId(props.data.id);
-							}>
+						<button
+							className="btn"
+							onClick={() => {
+								props.onDelete(actions.setDeleteId(props.contactDetails.id));
+							}}>
 							<i className="fas fa-trash-alt" />
 						</button>
 					</div>
-					<label className="name lead">{contactDetails.full_name}</label>
+					<label className="name lead">{props.contactDetails.full_name}</label>
 					<br />
 					<i className="fas fa-map-marker-alt text-muted mr-3" />
-					<span className="text-muted">{contactDetails.address}</span>
+					<span className="text-muted">{props.contactDetails.address}</span>
 					<br />
 					<span
 						className="fa fa-phone fa-fw text-muted mr-3"
@@ -40,7 +42,7 @@ export const ContactCard = ({ contactDetails }) => {
 						title=""
 						data-original-title="(870) 288-4149"
 					/>
-					<span className="text-muted small">{contactDetails.phone}</span>
+					<span className="text-muted small">{props.contactDetails.phone}</span>
 					<br />
 					<span
 						className="fa fa-envelope fa-fw text-muted mr-3"
@@ -48,7 +50,7 @@ export const ContactCard = ({ contactDetails }) => {
 						data-original-title=""
 						title=""
 					/>
-					<span className="text-muted small text-truncate">{contactDetails.email}</span>
+					<span className="text-muted small text-truncate">{props.contactDetails.email}</span>
 				</div>
 			</div>
 		</li>
