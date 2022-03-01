@@ -60,13 +60,14 @@ const getState = ({ getStore, setStore, getActions }) => {
 			},
 
 			setDeleteId: id => {
-				// DELETE: /apis/fake/contact/agenda/{agenda_slug}
+				//recieves id as params
 				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
-					method: "DELETE"
+					method: "DELETE" // no header or body needed since just deleting entire item by id
 				})
 					.then(response => response.json())
 					.then(responseJsonfied => getActions().getData())
 					.catch(error => console.error(error));
+				// will use this action in the MODAL
 			}
 		}
 	};
